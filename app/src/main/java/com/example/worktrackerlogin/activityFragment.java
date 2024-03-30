@@ -35,7 +35,7 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
     String storeDate = "";
     String storeType = "";
     String storeCrop = "";
-
+    String username = "";
     // For date picker
     private DatePickerDialog datePickerDialog;
 
@@ -57,6 +57,7 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
         farmerReach = view.findViewById(R.id.farmerReach);
         contactPerson = view.findViewById(R.id.contactPerson);
         contactNumber = view.findViewById(R.id.contactNumber);
+        username = getArguments().getString("username");
 
         if (contactNumber != null) {
             contactNumber.addTextChangedListener(new TextWatcher() {
@@ -215,13 +216,13 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
     private void storeDataToFirebase(String storeCSL, String storeReach, String storePerson, String storeNumber) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("Activities");
+        DatabaseReference myRef = database.getReference("users");
 
         int reach = Integer.parseInt(storeReach);
 
         activityDataClass activitydataclass = new activityDataClass(storeDate, storeCSL, storeType, storeCrop, storePerson, reach, storeNumber);
 
-        myRef.push().setValue(activitydataclass);
+        myRef.child(username).child("activities").push().setValue(activitydataclass);
 
         Toast.makeText(requireContext(), "Data uploaded", Toast.LENGTH_SHORT).show();
     }

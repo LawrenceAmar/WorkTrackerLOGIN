@@ -25,6 +25,7 @@ public class pogRecyclerFragment extends Fragment {
     ArrayList<pogDataClass> list;
     DatabaseReference databaseReference;
     pogAdapter adapter;
+    String username = "";
 
     public pogRecyclerFragment() {
     }
@@ -35,8 +36,8 @@ public class pogRecyclerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pog_recycler, container, false);
 
         recyclerView = view.findViewById(R.id.recycle_view);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("POG");
+        username = getArguments().getString("username");
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("pog");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapter = new pogAdapter(requireContext(), list);

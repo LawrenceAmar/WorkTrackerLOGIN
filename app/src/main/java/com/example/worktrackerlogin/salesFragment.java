@@ -1,5 +1,6 @@
 package com.example.worktrackerlogin;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,6 +41,7 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
     String storeDate = "";
     String storeProduct = "";
     String storeCustomer = "";
+    String username = "";
 
     // For date picker
     private DatePickerDialog datePickerDialog;
@@ -71,6 +75,7 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
         dateButton.setText("");
         initDatePicker();
 
+        username = getArguments().getString("username");
         /*
          Spinners
          */
@@ -158,6 +163,7 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
                     unitText.setText("");
                     customerNameText.setText("");
 
+
                 } else if (validationCode == 1) {
                     Toast.makeText(requireContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
                 } else if (validationCode == 2) {
@@ -244,7 +250,7 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
     // Store data to Firebase
     private void storeDataToFirebase(String storeUnit, String storePrice, String storeValue, String customerName) {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("Sales");
+        DatabaseReference myRef = database.getReference("users");
 
         int unit = Integer.parseInt(storeUnit);
         double price = Double.parseDouble(storePrice);
@@ -252,7 +258,7 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
 
         salesDataClass salesdataclass = new salesDataClass(storeDate, storeCustomer, storeProduct, unit, price, value, customerName);
 
-        myRef.push().setValue(salesdataclass);
+        myRef.child(username).child("sales").push().setValue(salesdataclass);
 
         Toast.makeText(requireContext(), "Data uploaded", Toast.LENGTH_SHORT).show();
     }

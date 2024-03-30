@@ -24,6 +24,7 @@ public class salesRecyclerFragment extends Fragment {
     ArrayList<salesDataClass> list;
     DatabaseReference databaseReference;
     salesAdapter adapter;
+    String username = "";
 
     public salesRecyclerFragment() {
     }
@@ -38,8 +39,8 @@ public class salesRecyclerFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new salesAdapter(getActivity(), list);
         recyclerView.setAdapter(adapter);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Sales");
+        username = getArguments().getString("username");
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("sales");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

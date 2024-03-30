@@ -35,7 +35,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
     String storeMonth = "";
     String storeTech = "";
     String storeBrand = "";
-
+    String username = "";
     public pogFragment() {
     }
 
@@ -49,6 +49,8 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
         pogTechnologySpin = view.findViewById(R.id.pogTechnology);
         pogBrandSpin = view.findViewById(R.id.pogBrand);
         textyear = view.findViewById(R.id.textyear);
+
+        username = getArguments().getString("username");
         if (textyear != null) {
             textyear.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -213,11 +215,11 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
 
 
                         DatabaseReference pogRef = FirebaseDatabase.getInstance("https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                                .getReference("POG");
+                                .getReference("users");
 
                         pogDataClass pogdataclass = new pogDataClass(storeYear, storeMonth, storeTech, brandName, storeCustomer, begInvUnits, endInvUnits, pogUnits, begInvKgs, endInvKgs, pogKgs, begInvCtn, endInvCtn, pogCtn, begInvVal, endInvVal, pogVal);
 
-                        pogRef.push().setValue(pogdataclass);
+                        pogRef.child(username).child("pog").push().setValue(pogdataclass);
 
                         // Clear Spinners
                         pogMonthSpin.setSelection(0);

@@ -25,7 +25,7 @@ public class activityRecycler extends Fragment {
     ArrayList<activityDataClass> list;
     DatabaseReference databaseReference;
     activitytrackAdapter adapter;
-
+    String username = "";
     public activityRecycler() {
     }
 
@@ -36,8 +36,8 @@ public class activityRecycler extends Fragment {
         View view = inflater.inflate(R.layout.fragment_activities_recycler, container, false);
 
         recyclerView = view.findViewById(R.id.recycle_view);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Activities");
+        username = getArguments().getString("username");
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("activities");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new activitytrackAdapter(getContext(), list);
