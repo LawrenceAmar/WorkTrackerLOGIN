@@ -1,0 +1,87 @@
+{
+  "project_info": {
+    "project_number": "124461895174",
+    "firebase_url": "https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "scl-filipinas-work-tracker",
+    "storage_bucket": "scl-filipinas-work-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124461895174:android:ba268b8118a0ce9261fd87",
+        "android_client_info": {
+          "package_name": "com.example.worktracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC84CkawGSJrUG1_iAI0LZ9-tH3WTGAfV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124461895174:android:08cf3ea3097cf13d61fd87",
+        "android_client_info": {
+          "package_name": "com.example.worktracker1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC84CkawGSJrUG1_iAI0LZ9-tH3WTGAfV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124461895174:android:d661cbb0566fdbb861fd87",
+        "android_client_info": {
+          "package_name": "com.example.worktracker_pog_sales"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC84CkawGSJrUG1_iAI0LZ9-tH3WTGAfV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124461895174:android:751224df09d5616e61fd87",
+        "android_client_info": {
+          "package_name": "com.example.worktrackerlogin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC84CkawGSJrUG1_iAI0LZ9-tH3WTGAfV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

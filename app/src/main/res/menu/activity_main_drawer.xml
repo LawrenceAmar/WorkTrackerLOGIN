@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    android:statusBarColor="@color/black">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_viewprofile"
+            android:icon="@drawable/baseline_account_box_24"
+            android:title="@string/view_profile" />
+        <item
+            android:id="@+id/nav_summary"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/summary_of_data" />
+        <item
+            android:id="@+id/nav_sales"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/sales" />
+        <item
+            android:id="@+id/nav_pog"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/pog" />
+        <item
+            android:id="@+id/nav_activities"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/activities" />
+        <item
+            android:id="@+id/nav_productList"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/product_list" />
+        <item
+            android:id="@+id/nav_cropList"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/crop_list" />
+        <item
+            android:id="@+id/nav_salesrecord"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/sales_record" />
+        <item
+            android:id="@+id/nav_pogrecord"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="POG Record" />
+        <item
+            android:id="@+id/nav_activitiesrecord"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Activity Record" />
+
+    </group>
+</menu>

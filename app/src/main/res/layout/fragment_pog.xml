@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pogFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="65dp"
+            android:layout_height="29dp"
+            android:text="Year"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="100dp" />
+
+        <EditText
+            android:id="@+id/textyear"
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="186dp"
+            android:layout_height="29dp"
+            android:text="Month"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="176dp" />
+
+        <Spinner
+            android:id="@+id/pogMonth"
+            android:layout_width="259dp"
+            android:layout_height="48dp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="168dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="216dp"
+            android:layout_height="30dp"
+            android:text="Technology"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="18dp"
+            tools:layout_editor_absoluteY="384dp" />
+
+        <Spinner
+            android:id="@+id/pogTechnology"
+            android:layout_width="256dp"
+            android:layout_height="48dp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="377dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="229dp"
+            android:layout_height="29dp"
+            android:text="Brand"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="276dp" />
+
+        <Spinner
+            android:id="@+id/pogBrand"
+            android:layout_width="259dp"
+            android:layout_height="48dp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="269dp" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="229dp"
+            android:layout_height="29dp"
+            android:text="Customer"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="276dp" />
+
+        <EditText
+            android:id="@+id/textcustomer"
+            android:layout_width="142dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="Beg. Inventory"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="276dp" />
+
+        <EditText
+            android:id="@+id/begInv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:text="End. Inventory"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="35dp"
+            tools:layout_editor_absoluteY="276dp" />
+
+        <EditText
+            android:id="@+id/endInv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="25dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/pog_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upload"
+            tools:layout_editor_absoluteX="150dp"
+            tools:layout_editor_absoluteY="484dp" />
+
+        <Button
+            android:id="@+id/pog_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            tools:layout_editor_absoluteX="62dp"
+            tools:layout_editor_absoluteY="564dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

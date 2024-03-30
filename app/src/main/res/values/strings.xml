@@ -1,0 +1,142 @@
+<resources>
+    <string name="app_name">WorkTrackerLOGIN</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="territory">territory</string>
+    <string name="select_territory">Select Territory</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="login">Login</string>
+    <string name="not_yet_registered_sign_up">not yet registered? Sign up</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="summary_of_data">Summary of Data</string>
+    <string name="sales">Sales</string>
+    <string name="pog">POG</string>
+    <string name="activities">Activities</string>
+    <string name="product_list">Product List</string>
+    <string name="crop_list">Crop List</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="address">Address</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="edit_territory">Edit Territory</string>
+    <string name="view_profile">View Profile</string>
+    <string name="name">name</string>
+
+    <string-array name="Territories">
+        <item>North Luzon</item>
+        <item>West Luzon</item>
+        <item>East Luzon</item>
+        <item>South Luzon</item>
+        <item>Central Luzon 1</item>
+        <item>Central Luzon 2</item>
+        <item>North Highland Luzon</item>
+        <item>Cebu</item>
+        <item>Negros</item>
+        <item>Iloilo</item>
+        <item>North Mindanao 1</item>
+        <item>North Mindanao 2</item>
+        <item>West Mindanao</item>
+        <item>South Mindanao 1</item>
+        <item>South Mindanao 2</item>
+        <item>South Mindanao 3</item>
+        <item>East Mindanao</item>
+    </string-array>
+
+
+    <!-- POG Page. -->
+    <string-array name="Months">
+        <item> </item>
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
+    <string-array name="Brands">
+        <item> </item>
+        <item>Turan</item>
+        <item>Semia</item>
+        <item>Nemes</item>
+        <item>Fortitudo</item>
+        <item>Tages</item>
+        <item>OK</item>
+    </string-array>
+
+    <string-array name="Technology">
+        <item> </item>
+        <item>FOLIAREL</item>
+        <item>FOLIFLO</item>
+        <item>ENNUVI</item>
+    </string-array>
+
+
+    <!-- Sales Page. -->
+    <string-array name="Customer">
+        <item> </item>
+        <item>Individual Farmer</item>
+        <item>Direct Dealer</item>
+        <item>Non-Direct Dealer</item>
+    </string-array>
+
+    <string-array name="Products">
+        <item> </item>
+        <item>Turan</item>
+        <item>Semia</item>
+        <item>Nemes</item>
+        <item>Fortitudo</item>
+        <item>Tages</item>
+        <item>OK</item>
+    </string-array>
+
+
+    <!-- Activities Page. -->
+    <string-array name="typeOfactivity">
+        <item> </item>
+        <item>Individual Call</item>
+        <item>Small Farmers Meeting</item>
+        <item>Big Farmers Meeting</item>
+        <item>Product Demo</item>
+    </string-array>
+
+    <string-array name="Crops">
+        <item> </item>
+        <item>Rice</item>
+        <item>Corn</item>
+        <item>Mango</item>
+        <item>Durian</item>
+        <item>Bananas</item>
+        <item>Pineapple</item>
+        <item>Eggplant</item>
+        <item>Stringbeans</item>
+        <item>Tomato</item>
+        <item>Onion</item>
+        <item>Spring Onion</item>
+        <item>Celery</item>
+        <item>Cabbage</item>
+        <item>Carrots</item>
+        <item>Potato</item>
+        <item>Gourd</item>
+        <item>Bittergourd</item>
+        <item>Watermelon</item>
+    </string-array>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sales_record">Sales Record</string>
+
+</resources>

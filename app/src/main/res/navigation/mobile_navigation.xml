@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.worktrackerlogin.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_viewprofile"
+        android:name="com.example.worktrackerlogin.ViewProfileFragment"
+        tools:layout="@layout/fragment_view_profile"/>
+    <fragment
+        android:id="@+id/nav_editprofile"
+        android:name="com.example.worktrackerlogin.EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile"/>
+    <fragment
+        android:id="@+id/nav_sales"
+        android:name="com.example.worktrackerlogin.salesFragment"
+        tools:layout="@layout/fragment_sales_activity"/>
+    <fragment
+        android:id="@+id/nav_salesrecord"
+        android:name="com.example.worktrackerlogin.salesRecyclerFragment"
+        tools:layout="@layout/fragment_sales_recycler"/>
+    <fragment
+        android:id="@+id/nav_pog"
+        android:name="com.example.worktrackerlogin.pogFragment"
+        tools:layout="@layout/fragment_pog"/>
+    <fragment
+        android:id="@+id/nav_pogrecord"
+        android:name="com.example.worktrackerlogin.pogRecyclerFragment"
+        tools:layout="@layout/fragment_pog"/>
+    <fragment
+        android:id="@+id/nav_activities"
+        android:name="com.example.worktrackerlogin.activityFragment"
+        tools:layout="@layout/fragment_activities"/>
+    <fragment
+        android:id="@+id/nav_activitiesrecord"
+        android:name="com.example.worktrackerlogin.activityRecycler"
+        tools:layout="@layout/fragment_activities_recycler"/>
+    <fragment
+        android:id="@+id/nav_cropList"
+        android:name="com.example.worktrackerlogin.listCropFragment"
+        tools:layout="@layout/fragment_list_crop"/>
+    <fragment
+        android:id="@+id/nav_productList"
+        android:name="com.example.worktrackerlogin.listProductFragment"
+        tools:layout="@layout/fragment_list_product"/>
+
+</navigation>
