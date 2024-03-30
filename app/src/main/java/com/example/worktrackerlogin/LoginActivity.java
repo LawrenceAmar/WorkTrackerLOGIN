@@ -117,8 +117,30 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra("address", addressFromDB);
                         intent.putExtra("contactn", contactFromDB);
                         intent.putExtra("territory", territoryFromDB);
-                        intent.putExtra("imageUri", imageUriFromDB); // Pass image URI
+                        intent.putExtra("imageUri", imageUriFromDB);
                         startActivity(intent);
+
+                        /*
+                            FOR SPECIFIC USER DATA
+                         */
+                        Intent activityIntent = getIntent();
+                        String username = activityIntent.getStringExtra("username");
+
+                        activityFragment fragment = new activityFragment();
+                        Bundle args = new Bundle();
+                        args.putString("username", username);
+                        fragment.setArguments(args);
+
+                        pogFragment fragment1 = new pogFragment();
+                        Bundle args1 = new Bundle();
+                        args1.putString("username", username);
+                        fragment1.setArguments(args1);
+
+                        salesFragment fragment2 = new salesFragment();
+                        Bundle args2 = new Bundle();
+                        args2.putString("username", username);
+                        fragment2.setArguments(args2);
+
                     } else {
                         loginPassword.setError("Invalid Credentials");
                         loginPassword.requestFocus();

@@ -25,19 +25,29 @@ public class activityRecycler extends Fragment {
     ArrayList<activityDataClass> list;
     DatabaseReference databaseReference;
     activitytrackAdapter adapter;
-    String username = "";
+
+    // Specific User
+    private String username;
+
     public activityRecycler() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_activities_recycler, container, false);
 
         recyclerView = view.findViewById(R.id.recycle_view);
-        username = getArguments().getString("username");
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("activities");
+
+        // Get the currently signed-in user's username from the arguments
+        Bundle args = getArguments();
+        if (args != null) {
+            username = args.getString("username");
+        }
+        if (username != null) {
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("Activities");
+        }
+
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new activitytrackAdapter(getContext(), list);

@@ -1,9 +1,7 @@
 package com.example.worktrackerlogin;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,8 +20,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -41,10 +37,12 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
     String storeDate = "";
     String storeProduct = "";
     String storeCustomer = "";
-    String username = "";
 
     // For date picker
     private DatePickerDialog datePickerDialog;
+
+    // Specific User
+    private String username;
 
     public salesFragment() {
         // Required empty public constructor
@@ -61,6 +59,11 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
 
         View view = inflater.inflate(R.layout.fragment_sales_activity, container, false);
 
+        // Retrieve username from arguments
+        if (getArguments() != null) {
+            username = getArguments().getString("username");
+        }
+
         // Initialize UI elements
         priceText = view.findViewById(R.id.sales_price);
         valueText = view.findViewById(R.id.sales_value);
@@ -75,7 +78,6 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
         dateButton.setText("");
         initDatePicker();
 
-        username = getArguments().getString("username");
         /*
          Spinners
          */
@@ -147,9 +149,8 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
                     String customerName = customerNameText.getText().toString();
 
                     // Storing data to Firebase
-                    storeDataToFirebase(storeUnit, storePrice, storeValue, customerName);
+                    storeDataToFirebase(username, storeUnit, storePrice, storeValue, customerName);
 
-                    // Clear stored data locally
                     clearLocalData();
 
                     // Clear Spinners
@@ -162,7 +163,6 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
                     valueText.setText("");
                     unitText.setText("");
                     customerNameText.setText("");
-
 
                 } else if (validationCode == 1) {
                     Toast.makeText(requireContext(), "Please fill in all fields.", Toast.LENGTH_SHORT).show();
@@ -187,9 +187,10 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
                 String storePrice = priceText.getText().toString();
                 String storeValue = valueText.getText().toString();
                 String customerName = customerNameText.getText().toString();
+                String currentUser = username;
 
                 // Storing data locally
-                storeDataLocally(storeUnit, storePrice, storeValue, customerName);
+                storeDataLocally(currentUser, storeUnit, storePrice, storeValue, customerName);
 
                 Toast.makeText(requireContext(), "Progress saved", Toast.LENGTH_SHORT).show();
             }
@@ -248,9 +249,10 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
     }
 
     // Store data to Firebase
-    private void storeDataToFirebase(String storeUnit, String storePrice, String storeValue, String customerName) {
+    private void storeDataToFirebase(String username, String storeUnit, String storePrice, String storeValue, String customerName) {
+
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("users");
+        DatabaseReference myRef = database.getReference("users").child(username).child("Sales");
 
         int unit = Integer.parseInt(storeUnit);
         double price = Double.parseDouble(storePrice);
@@ -258,15 +260,15 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
 
         salesDataClass salesdataclass = new salesDataClass(storeDate, storeCustomer, storeProduct, unit, price, value, customerName);
 
-        myRef.child(username).child("sales").push().setValue(salesdataclass);
+        myRef.push().setValue(salesdataclass);
 
         Toast.makeText(requireContext(), "Data uploaded", Toast.LENGTH_SHORT).show();
     }
 
     // Store data locally
-    private void storeDataLocally(String storeUnit, String storePrice, String storeValue, String customerName) {
+    private void storeDataLocally(String username, String storeUnit, String storePrice, String storeValue, String customerName) {
 
-        SharedPreferences sales_preferences = requireActivity().getSharedPreferences("SalesLocalData", requireActivity().MODE_PRIVATE);
+        SharedPreferences sales_preferences = requireActivity().getSharedPreferences(username + "SalesLocalData", requireActivity().MODE_PRIVATE);
         SharedPreferences.Editor editor = sales_preferences.edit();
 
         editor.putString("storedDate", storeDate);
@@ -282,7 +284,7 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
     // Load previously selected values
     private void loadPreviousSelections() {
 
-        SharedPreferences sales_preferences = requireActivity().getSharedPreferences("SalesLocalData", requireActivity().MODE_PRIVATE);
+        SharedPreferences sales_preferences = requireActivity().getSharedPreferences(username + "SalesLocalData", requireActivity().MODE_PRIVATE);
 
         storeDate = sales_preferences.getString("storedDate", "");
         storeProduct = sales_preferences.getString("storedProduct", "");
@@ -322,7 +324,7 @@ public class salesFragment extends Fragment implements AdapterView.OnItemSelecte
 
     // Method to clear stored data locally
     private void clearLocalData() {
-        SharedPreferences sales_preferences = requireActivity().getSharedPreferences("SalesLocalData", requireActivity().MODE_PRIVATE);
+        SharedPreferences sales_preferences = requireActivity().getSharedPreferences(username + "SalesLocalData", requireActivity().MODE_PRIVATE);
         SharedPreferences.Editor editor = sales_preferences.edit();
         editor.clear();
         editor.apply();

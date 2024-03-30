@@ -35,7 +35,10 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
     String storeMonth = "";
     String storeTech = "";
     String storeBrand = "";
-    String username = "";
+
+    // Specific User
+    private String username;
+
     public pogFragment() {
     }
 
@@ -44,13 +47,16 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
 
         View view = inflater.inflate(R.layout.fragment_pog, container, false);
 
+        // Retrieve username from arguments
+        if (getArguments() != null) {
+            username = getArguments().getString("username");
+        }
+
         // Initialize UI elements
         pogMonthSpin = view.findViewById(R.id.pogMonth);
         pogTechnologySpin = view.findViewById(R.id.pogTechnology);
         pogBrandSpin = view.findViewById(R.id.pogBrand);
         textyear = view.findViewById(R.id.textyear);
-
-        username = getArguments().getString("username");
         if (textyear != null) {
             textyear.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -81,7 +87,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 requireActivity(),
                 R.array.Months,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_layout
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pogMonthSpin.setAdapter(adapter);
@@ -91,7 +97,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
                 requireActivity(),
                 R.array.Technology,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_layout
         );
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pogTechnologySpin.setAdapter(adapter1);
@@ -101,7 +107,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
                 requireActivity(),
                 R.array.Brands,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_layout
         );
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pogBrandSpin.setAdapter(adapter2);
@@ -120,7 +126,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
                     String storeYear = textyear.getText().toString();
                     String storeCustomer = textcustomer.getText().toString();
 
-                    storeDataFirebase(storeYear, storeCustomer);
+                    storeDataFirebase(username, storeYear, storeCustomer);
 
                     clearLocalData();
 
@@ -131,17 +137,21 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
         });
 
         // SAVE BUTTON
-        saveButton.setOnClickListener(view1 -> {
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-            String storeYear = textyear.getText().toString();
-            String storeCustomer = textcustomer.getText().toString();
-            String storeBINV = begInv.getText().toString();
-            String storeEINV = endInv.getText().toString();
+                String storeYear = textyear.getText().toString();
+                String storeCustomer = textcustomer.getText().toString();
+                String storeBINV = begInv.getText().toString();
+                String storeEINV = endInv.getText().toString();
+                String currentUser = username;
 
-            // Storing data locally
-            storeDataLocally(storeYear, storeCustomer, storeBINV, storeEINV);
+                // Storing data locally
+                storeDataLocally(currentUser, storeYear, storeCustomer, storeBINV, storeEINV);
 
-            Toast.makeText(requireContext(), "Progress saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Progress saved", Toast.LENGTH_SHORT).show();
+            }
         });
         return view;
     }
@@ -170,7 +180,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
     }
 
     // Store data to Firebase
-    private void storeDataFirebase(String storeYear, String storeCustomer) {
+    private void storeDataFirebase(String username, String storeYear, String storeCustomer) {
         String begInvStr = begInv.getText().toString().trim();
         String endInvStr = endInv.getText().toString().trim();
 
@@ -214,12 +224,12 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
                         double pogVal = Double.parseDouble(String.format("%.9f", begInvVal - endInvVal));
 
 
-                        DatabaseReference pogRef = FirebaseDatabase.getInstance("https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                                .getReference("users");
+                        FirebaseDatabase database = FirebaseDatabase.getInstance("https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app/");
+                        DatabaseReference pogRef = database.getReference("users").child(username).child("POG");
 
                         pogDataClass pogdataclass = new pogDataClass(storeYear, storeMonth, storeTech, brandName, storeCustomer, begInvUnits, endInvUnits, pogUnits, begInvKgs, endInvKgs, pogKgs, begInvCtn, endInvCtn, pogCtn, begInvVal, endInvVal, pogVal);
 
-                        pogRef.child(username).child("pog").push().setValue(pogdataclass);
+                        pogRef.push().setValue(pogdataclass);
 
                         // Clear Spinners
                         pogMonthSpin.setSelection(0);
@@ -250,9 +260,9 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
     }
 
     // Store data locally
-    private void storeDataLocally(String storeYear, String storeCustomer, String storeBINV, String storeEINV) {
+    private void storeDataLocally(String username, String storeYear, String storeCustomer, String storeBINV, String storeEINV) {
 
-        SharedPreferences pog_preferences = requireActivity().getSharedPreferences("POGLocalData", requireActivity().MODE_PRIVATE);
+        SharedPreferences pog_preferences = requireActivity().getSharedPreferences(username + "POGLocalData", requireActivity().MODE_PRIVATE);
         SharedPreferences.Editor editor = pog_preferences.edit();
 
         editor.putString("storedYear", storeYear);
@@ -268,7 +278,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
     // Load previously selected values
     private void loadPreviousSelections() {
 
-        SharedPreferences pog_preferences = requireActivity().getSharedPreferences("POGLocalData", requireActivity().MODE_PRIVATE);
+        SharedPreferences pog_preferences = requireActivity().getSharedPreferences(username + "POGLocalData", requireActivity().MODE_PRIVATE);
 
         String storedYear = pog_preferences.getString("storedYear", "");
         storeMonth = pog_preferences.getString("storedMonth", "");
@@ -309,7 +319,7 @@ public class pogFragment extends Fragment implements AdapterView.OnItemSelectedL
 
     // Method to clear stored data locally
     private void clearLocalData() {
-        SharedPreferences pog_preferences = requireActivity().getSharedPreferences("POGLocalData", requireActivity().MODE_PRIVATE);
+        SharedPreferences pog_preferences = requireActivity().getSharedPreferences(username + "POGLocalData", requireActivity().MODE_PRIVATE);
         SharedPreferences.Editor editor = pog_preferences.edit();
         editor.clear();
         editor.apply();

@@ -35,9 +35,12 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
     String storeDate = "";
     String storeType = "";
     String storeCrop = "";
-    String username = "";
+
     // For date picker
     private DatePickerDialog datePickerDialog;
+
+    // Specific User
+    private String username;
 
     public activityFragment() {
     }
@@ -46,6 +49,11 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_activities, container, false);
+
+        // Retrieve username from arguments
+        if (getArguments() != null) {
+            username = getArguments().getString("username");
+        }
 
         // Initialize UI elements
         activityDate = view.findViewById(R.id.activityDate);
@@ -57,7 +65,6 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
         farmerReach = view.findViewById(R.id.farmerReach);
         contactPerson = view.findViewById(R.id.contactPerson);
         contactNumber = view.findViewById(R.id.contactNumber);
-        username = getArguments().getString("username");
 
         if (contactNumber != null) {
             contactNumber.addTextChangedListener(new TextWatcher() {
@@ -87,7 +94,7 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.typeOfactivity,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_layout
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         activityType.setAdapter(adapter);
@@ -97,7 +104,7 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.Crops,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_layout
         );
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         activityCrop.setAdapter(adapter1);
@@ -119,9 +126,8 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
                     String storeNumber = contactNumber.getText().toString();
 
                     // Storing data to Firebase
-                    storeDataToFirebase(storeCSL, storeReach, storeContact, storeNumber);
+                    storeDataToFirebase(username, storeCSL, storeReach, storeContact, storeNumber);
 
-                    // Clear stored data locally
                     clearLocalData();
 
                     // Clear Spinners
@@ -156,9 +162,10 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
                 String storeReach = farmerReach.getText().toString();
                 String storeContact = contactPerson.getText().toString();
                 String storeNumber = contactNumber.getText().toString();
+                String currentUser = username;
 
                 // Storing data locally
-                storeDataLocally(storeCSL, storeReach, storeContact, storeNumber);
+                storeDataLocally(currentUser, storeCSL, storeReach, storeContact, storeNumber);
 
                 Toast.makeText(requireContext(), "Progress saved", Toast.LENGTH_SHORT).show();
             }
@@ -213,24 +220,25 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
     }
 
     // Store data to Firebase
-    private void storeDataToFirebase(String storeCSL, String storeReach, String storePerson, String storeNumber) {
+    private void storeDataToFirebase(String username, String storeCSL, String storeReach, String storePerson, String storeNumber) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://scl-filipinas-work-tracker-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference("users");
+        DatabaseReference myRef = database.getReference("users").child(username).child("Activities");
 
         int reach = Integer.parseInt(storeReach);
 
         activityDataClass activitydataclass = new activityDataClass(storeDate, storeCSL, storeType, storeCrop, storePerson, reach, storeNumber);
 
-        myRef.child(username).child("activities").push().setValue(activitydataclass);
+        myRef.push().setValue(activitydataclass);
 
         Toast.makeText(requireContext(), "Data uploaded", Toast.LENGTH_SHORT).show();
     }
 
-    // Store data locally
-    private void storeDataLocally(String storeCSL, String storeReach, String storePerson, String storeNumber) {
 
-        SharedPreferences activity_preference = requireContext().getSharedPreferences("ActivityLocalData", requireContext().MODE_PRIVATE);
+    // Store data locally
+    private void storeDataLocally(String username, String storeCSL, String storeReach, String storePerson, String storeNumber) {
+
+        SharedPreferences activity_preference = requireContext().getSharedPreferences(username + "ActivityLocalData", requireContext().MODE_PRIVATE);
         SharedPreferences.Editor editor = activity_preference.edit();
 
         editor.putString("storedDate", storeDate);
@@ -246,7 +254,7 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
     // Load previously selected values
     private void loadPreviousSelections() {
 
-        SharedPreferences activity_preference = requireContext().getSharedPreferences("ActivityLocalData", requireContext().MODE_PRIVATE);
+        SharedPreferences activity_preference = requireContext().getSharedPreferences(username + "ActivityLocalData", requireContext().MODE_PRIVATE);
 
         storeDate = activity_preference.getString("storedDate", "");
         storeType = activity_preference.getString("storedType", "");
@@ -286,7 +294,7 @@ public class activityFragment extends Fragment implements AdapterView.OnItemSele
 
     // Method to clear stored data locally
     private void clearLocalData() {
-        SharedPreferences activity_preference = requireContext().getSharedPreferences("ActivityLocalData", requireContext().MODE_PRIVATE);
+        SharedPreferences activity_preference = requireContext().getSharedPreferences(username + "ActivityLocalData", requireContext().MODE_PRIVATE);
         SharedPreferences.Editor editor = activity_preference.edit();
         editor.clear();
         editor.apply();

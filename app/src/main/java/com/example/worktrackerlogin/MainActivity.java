@@ -101,6 +101,11 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("username", usernameUser);
                 navController.navigate(R.id.nav_viewprofile, bundle);
             }
+            else if (id == R.id.nav_home) {
+                Bundle bundle = new Bundle();
+                bundle.putString("username", usernameUser);
+                navController.navigate(R.id.nav_home, bundle);
+            }
             else if (id == R.id.nav_sales) {
                 Bundle bundle = new Bundle();
                 bundle.putString("username", usernameUser);

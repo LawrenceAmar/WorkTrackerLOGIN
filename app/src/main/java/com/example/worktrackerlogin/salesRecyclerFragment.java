@@ -24,23 +24,34 @@ public class salesRecyclerFragment extends Fragment {
     ArrayList<salesDataClass> list;
     DatabaseReference databaseReference;
     salesAdapter adapter;
-    String username = "";
+
+    // Specific User
+    private String username;
 
     public salesRecyclerFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_sales_recycler, container, false);
 
         recyclerView = view.findViewById(R.id.recycle_view);
+
+        // Get the currently signed-in user's username from the arguments
+        Bundle args2 = getArguments();
+        if (args2 != null) {
+            username = args2.getString("username");
+        }
+        if (username != null) {
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("Sales");
+        }
+
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new salesAdapter(getActivity(), list);
         recyclerView.setAdapter(adapter);
-        username = getArguments().getString("username");
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(username).child("sales");
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
