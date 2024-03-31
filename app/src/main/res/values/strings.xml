@@ -28,7 +28,7 @@
     <string name="contact_number">Contact Number</string>
     <string name="edit_territory">Edit Territory</string>
     <string name="view_profile">View Profile</string>
-    <string name="name">name</string>
+    <string name="name">Name</string>
 
     <string-array name="Territories">
         <item>North Luzon</item>

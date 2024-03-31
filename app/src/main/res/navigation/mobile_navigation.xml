@@ -50,5 +50,9 @@
         android:id="@+id/nav_productList"
         android:name="com.example.worktrackerlogin.listProductFragment"
         tools:layout="@layout/fragment_list_product"/>
+    <fragment
+        android:id="@+id/nav_datageneratedpage"
+        android:name="com.example.worktrackerlogin.dataGeneratedFragment"
+        tools:layout="@layout/fragment_data_generated"/>
 
 </navigation>

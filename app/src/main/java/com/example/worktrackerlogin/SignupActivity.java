@@ -86,7 +86,7 @@ public class SignupActivity extends AppCompatActivity implements AdapterView.OnI
             String contact = signupContact.getText().toString();
             String password = signupPassword.getText().toString();
             String territory = selectedTerritory;
-            HelperClass helperClass = new HelperClass(name,username, email, address,contact, territory, password);
+            HelperClass helperClass = new HelperClass(name,username, email, address,contact, territory, password, "employee");
             myRef.child(username).setValue(helperClass);
 
             Toast.makeText(SignupActivity.this, "You have signup successfully!", Toast.LENGTH_SHORT).show();

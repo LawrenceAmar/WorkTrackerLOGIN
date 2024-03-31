@@ -108,8 +108,20 @@ public class LoginActivity extends AppCompatActivity {
                         String contactFromDB = snapshot.child(userUsername).child("contactn").getValue(String.class);
                         String territoryFromDB = snapshot.child(userUsername).child("territory").getValue(String.class);
                         String imageUriFromDB = snapshot.child(userUsername).child("imageUri").getValue(String.class);
+                        String access = snapshot.child(userUsername).child("access").getValue(String.class);
+                        Intent intent = null;
 
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        loginusername.setText("");
+                        loginPassword.setText("");
+
+                        assert access != null;
+                        if (access.equals("employee")) {
+                            intent = new Intent(LoginActivity.this, MainActivity.class);
+                        }
+                        else if (access.equals("admin")) {
+                            intent = new Intent(LoginActivity.this, MainActivity2.class);
+                        }
+                        assert intent != null;
                         intent.putExtra("name", nameFromDB);
                         intent.putExtra("email", emailFromDB);
                         intent.putExtra("username", usernameFromDB);

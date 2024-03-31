@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.worktrackerlogin"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -73,6 +73,9 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.androidx.fragment)
     implementation(libs.glide)
+    implementation(libs.opencsv)
+    implementation(libs.poi)
+    implementation(libs.poi.ooxml)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -58,9 +58,9 @@ public class HelperClass {
         this.password = password;
     }
 
-    String name,username, email, address, contactn, territory, password;
+    String name, username, email, address, contactn, territory, password, access;
 
-    public HelperClass(String name,String username, String email, String address,String contactn,String territory, String password) {
+    public HelperClass(String name,String username, String email, String address,String contactn,String territory, String password, String access) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -68,6 +68,7 @@ public class HelperClass {
         this.contactn = contactn;
         this.territory = territory;
         this.password = password;
+        this.access = access;
     }
 
 }
