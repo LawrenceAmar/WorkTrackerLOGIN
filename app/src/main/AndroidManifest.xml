@@ -10,25 +10,25 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Work Tracker"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkTrackerLOGIN.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".profile.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.WorkTrackerLOGINDARK.NoActionBar" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".profile.MainActivity2"
             android:exported="false"
             android:theme="@style/Theme.WorkTrackerLOGINDARK.NoActionBar" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".profile.SignupActivity"
             android:exported="false"
             android:theme="@style/Theme.WorkTrackerLOGIN.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".profile.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.WorkTrackerLOGIN.NoActionBar">
             <intent-filter>

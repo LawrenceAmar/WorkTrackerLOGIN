@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WorkTrackerLOGIN</string>
     <string name="sign_up">Sign Up</string>
-    <string name="territory">Territory</string>
+    <string name="territory">territory</string>
     <string name="select_territory">Select Territory</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,7 +14,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="login">Login</string>
-    <string name="not_yet_registered_sign_up">Not yet registered? Sign up</string>
+    <string name="not_yet_registered_sign_up">not yet registered? Sign up</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="summary_of_data">Summary of Data</string>
@@ -28,7 +28,7 @@
     <string name="contact_number">Contact Number</string>
     <string name="edit_territory">Edit Territory</string>
     <string name="view_profile">View Profile</string>
-    <string name="name">Name</string>
+    <string name="name">name</string>
 
     <string-array name="Territories">
         <item>North Luzon</item>

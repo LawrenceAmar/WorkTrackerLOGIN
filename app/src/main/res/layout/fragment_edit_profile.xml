@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@drawable/background"
     android:gravity="center"
-    tools:context=".EditProfileFragment">
+    tools:context=".profile.EditProfileFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -67,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:id="@+id/editName"
+                    android:inputType="text"
                     android:background="@drawable/dark_border"
                     android:layout_marginTop="10dp"
                     android:padding="8dp"
@@ -80,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:id="@+id/editEmail"
+                    android:inputType="text"
                     android:background="@drawable/dark_border"
                     android:layout_marginTop="10dp"
                     android:padding="8dp"
@@ -92,19 +94,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/editUsername"
-                    android:background="@drawable/dark_border"
-                    android:layout_marginTop="10dp"
-                    android:padding="8dp"
-                    android:hint="Username"
-                    android:drawableLeft="@drawable/ic_baseline_person_pin_24"
-                    android:drawablePadding="8dp"
-                    android:textColor="@color/grey"
-                    android:fontFamily="@font/aileronregular"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
                     android:id="@+id/editAddress"
+                    android:inputType="text"
                     android:background="@drawable/dark_border"
                     android:layout_marginTop="10dp"
                     android:padding="8dp"
@@ -117,6 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:id="@+id/editContact"
+                    android:inputType="number"
                     android:background="@drawable/dark_border"
                     android:layout_marginTop="10dp"
                     android:padding="8dp"

@@ -1,53 +1,42 @@
 package com.example.worktrackerlogin;
 
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.ThemedSpinnerAdapter;
 import androidx.fragment.app.Fragment;
 
+import com.example.worktrackerlogin.activity.activityDataClass;
+import com.example.worktrackerlogin.pog.pogDataClass;
+import com.example.worktrackerlogin.sales.salesDataClass;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.opencsv.CSVWriter;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 public class dataGeneratedFragment extends Fragment{
+
     ArrayList<activityDataClass> activitiesList = new ArrayList<>();
     ArrayList<salesDataClass> salesList = new ArrayList<>();
     ArrayList<pogDataClass> pogList = new ArrayList<>();
@@ -57,6 +46,7 @@ public class dataGeneratedFragment extends Fragment{
     DatabaseReference databaseReferencePOG;
     DatabaseReference databaseReferenceUser;
     private String username;
+
     public dataGeneratedFragment() {
 
     }
@@ -246,8 +236,6 @@ public class dataGeneratedFragment extends Fragment{
                 // Handle error
             }
         });
-
-
         return view;
     }
 }

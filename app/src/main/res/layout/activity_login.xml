@@ -8,7 +8,7 @@
     android:layout_gravity="center"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".LoginActivity"
+    tools:context=".profile.LoginActivity"
     android:fitsSystemWindows="true">
 
     <!-- ImageView -->
@@ -55,7 +55,7 @@
                 android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/dark_border"
                 android:drawableLeft="@drawable/ic_baseline_person_pin_24"
                 android:drawablePadding="8dp"

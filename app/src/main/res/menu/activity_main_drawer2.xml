@@ -7,48 +7,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/baseline_dashboard_24"
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_viewprofile"
             android:icon="@drawable/baseline_account_box_24"
             android:title="@string/view_profile" />
         <item
-            android:id="@+id/nav_summary"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/summary_of_data" />
-        <item
             android:id="@+id/nav_sales"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/baseline_attach_money_24"
             android:title="@string/sales" />
         <item
-            android:id="@+id/nav_pog"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/pog" />
-        <item
             android:id="@+id/nav_activities"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/baseline_assignment_24"
             android:title="@string/activities" />
         <item
+            android:id="@+id/nav_pog"
+            android:icon="@drawable/baseline_assessment_24"
+            android:title="@string/pog" />
+        <item
             android:id="@+id/nav_productList"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/sharp_dehaze_24"
             android:title="@string/product_list" />
         <item
             android:id="@+id/nav_cropList"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/sharp_dehaze_24"
             android:title="@string/crop_list" />
-        <item
-            android:id="@+id/nav_salesrecord"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/sales_record" />
-        <item
-            android:id="@+id/nav_pogrecord"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="POG Record" />
-        <item
-            android:id="@+id/nav_activitiesrecord"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Activity Record" />
         <item
             android:id="@+id/nav_datageneratedpage"
             android:icon="@drawable/ic_menu_slideshow"
